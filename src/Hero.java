@@ -9,42 +9,38 @@ public class Hero {
 	public PImage hero;
 	public PImage herodead;
 
-	public Hero(PApplet app) {
-		this.posX = 576;
-		this.posY = 350;
+	public Hero(PApplet app, int posX, int posY) {
+		this.posX = posX;
+		this.posY = posY;
 		hero= app.loadImage("hero1.png");
 		herodead = app.loadImage("hero2.png");
-		this.app = app;
+		//this.app = app;
 
 	}
 
-	
-	public void movHero(int tecla) {
 
-		if (tecla == 'a') {
-			posX -= 5;
+	public void drawHero( PApplet app ) {
 
-		}
-		if (tecla == 'd') {
-			posY += 5;
-
-		}
-
-	}
-	
-	public void drawHero(PApplet app, int posX, int posY ) {
-
+		hero.resize (0,200);
 		app.imageMode(app.CENTER);
 		app.image(hero, posX, posY);
 		app.imageMode(app.CORNER);
 	}
+	
+	public void mov (int key) {
 
-	public void drawHerodead(PApplet app) {
+		if (key == 'a') {
+			posX -= 5;
+			System.out.println("a, "+posX);
 
-		app.imageMode(app.CENTER);
-		app.image(herodead, posX, posY);
-		app.imageMode(app.CORNER);
+		}else if (key == 'd') {
+			posX += 5;
+			System.out.println("d "+ posX);
+
+		}
+
 	}
+
 
 
 

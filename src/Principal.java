@@ -123,7 +123,7 @@ public class Principal extends PApplet {
 		
 		//---------------------------------------------------
 		
-		hero = new Hero(this);
+		hero = new Hero(this, 576, 600);
 
 	}
 
@@ -168,7 +168,7 @@ public class Principal extends PApplet {
 			
 			//HERO
 			
-			hero.drawHero(this,576,350);
+			hero.drawHero(this);
 			
 		}
 
@@ -229,10 +229,15 @@ public class Principal extends PApplet {
 
 	}
 	
-	@Override
 	public void keyPressed() {
-		hero.movHero(key);
-	}
+				if (estado==3){
+				hero.mov(key);
+				}			
+		}
+		
+		
+	
+	
 	
 
 }
