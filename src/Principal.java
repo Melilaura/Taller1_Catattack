@@ -23,26 +23,6 @@ public class Principal extends PApplet {
 	PImage resume;
 	PImage game;
 
-	// characters
-	// hero
-	PImage hero;
-	PImage herodead;
-
-	// cats
-
-	PImage cat1;
-	PImage cat1dead;
-
-	PImage cat2;
-	PImage cat2dead;
-
-	PImage cat3;
-	PImage cat3dead;
-
-	// bullet
-
-	PImage bullet;
-
 	// -------------------------------------------------------
 
 	// VARIABLES
@@ -87,25 +67,6 @@ public class Principal extends PApplet {
 		resume = loadImage("resume.png");
 		game = loadImage("juego.png");
 
-		// load images characters
-		// hero
-		hero = loadImage("hero1.png");
-		herodead = loadImage("hero2.png");
-
-		// load images cats
-
-		cat1 = loadImage("cat1.png");
-		cat1dead = loadImage("cat1b.png");
-
-		cat2 = loadImage("cat2.png");
-		cat2dead = loadImage("cat2b.png");
-
-		cat3 = loadImage("cat3.png");
-		cat3dead = loadImage("cat3b.png");
-
-		// load image bullet
-
-		bullet = loadImage("bullet.png");
 
 		// VARIABLES----------------------------------------------
 
@@ -155,7 +116,7 @@ public class Principal extends PApplet {
 		//TIMER
 		
 		s=0;
-		m=50;
+		m=0;
 		h=0;
 		
 	}
@@ -268,8 +229,7 @@ public class Principal extends PApplet {
 	
 	@Override
 	public void mouseDragged() {
-		// TODO Auto-generated method stub
-		super.mouseDragged();
+		
 	}
 
 }
