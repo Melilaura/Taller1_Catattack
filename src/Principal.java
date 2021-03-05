@@ -72,6 +72,10 @@ public class Principal extends PApplet {
 
 	int x11, y11; // button menu
 	int x12, y12;
+	
+	//timer
+	
+	int s, m,h;
 
 	@Override
 	public void setup() {
@@ -147,7 +151,13 @@ public class Principal extends PApplet {
 		y10 = 653;
 
 		// ------------------------------------------------
-
+		
+		//TIMER
+		
+		s=0;
+		m=50;
+		h=0;
+		
 	}
 
 	@Override
@@ -172,6 +182,31 @@ public class Principal extends PApplet {
 			imageMode(CENTER);
 			image(game, 576, 350);
 			imageMode(CORNER);
+			
+			//TIMER-----------
+			textSize(35);
+			
+			if(s<=59) {
+				s= s+1;
+				text(h+" : " +m,750,40);
+				
+			} else {
+				m=m+1;
+				s=0;
+			//	text(h+" : "+m,757,9);
+				
+			}if(m<=59) {
+			
+				
+			} else {
+				h=h+1;
+				m=0;
+			//	text(h+" : "+m,757,9);
+				
+			}				
+			
+			
+			
 		}
 
 		if (estado == 4) {
@@ -229,6 +264,12 @@ public class Principal extends PApplet {
 			}
 		}
 
+	}
+	
+	@Override
+	public void mouseDragged() {
+		// TODO Auto-generated method stub
+		super.mouseDragged();
 	}
 
 }
