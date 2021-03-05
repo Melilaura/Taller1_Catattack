@@ -16,6 +16,8 @@ public class Principal extends PApplet {
 
 	}
 
+	Hero hero;
+	
 	// IMAGES
 	// wall
 	PImage instructions;
@@ -119,6 +121,10 @@ public class Principal extends PApplet {
 		m=0;
 		h=0;
 		
+		//---------------------------------------------------
+		
+		hero = new Hero(this);
+
 	}
 
 	@Override
@@ -150,23 +156,19 @@ public class Principal extends PApplet {
 			if(s<=59) {
 				s= s+1;
 				text(h+" : " +m,750,40);
-				
 			} else {
 				m=m+1;
-				s=0;
-			//	text(h+" : "+m,757,9);
-				
+				s=0;				
 			}if(m<=59) {
-			
 				
 			} else {
 				h=h+1;
-				m=0;
-			//	text(h+" : "+m,757,9);
-				
+				m=0;				
 			}				
 			
+			//HERO
 			
+			hero.drawHero(this,576,350);
 			
 		}
 
@@ -228,8 +230,9 @@ public class Principal extends PApplet {
 	}
 	
 	@Override
-	public void mouseDragged() {
-		
+	public void keyPressed() {
+		hero.movHero(key);
 	}
+	
 
 }

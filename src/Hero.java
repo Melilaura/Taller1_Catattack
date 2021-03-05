@@ -2,24 +2,23 @@ import processing.core.PApplet;
 import processing.core.PImage;
 
 public class Hero {
-	
+
 	private int posX, posY;
 	private PApplet app;
-	
-	private PImage hero;
-	private PImage herodead;
 
-	public Hero(int posX, int posY, int tamX, int tamY, PApplet app) {
-		this.posX = posX;
-		this.posY = posY;
+	public PImage hero;
+	public PImage herodead;
 
-		hero = app.loadImage("hero1.png");
+	public Hero(PApplet app) {
+		this.posX = 576;
+		this.posY = 350;
+		hero= app.loadImage("hero1.png");
 		herodead = app.loadImage("hero2.png");
-		
 		this.app = app;
 
 	}
 
+	
 	public void movHero(int tecla) {
 
 		if (tecla == 'a') {
@@ -32,16 +31,21 @@ public class Hero {
 		}
 
 	}
+	
+	public void drawHero(PApplet app, int posX, int posY ) {
 
-	void drawHero(PApplet app) {
-		
 		app.imageMode(app.CENTER);
-		app.image(hero, 576, 350);
+		app.image(hero, posX, posY);
 		app.imageMode(app.CORNER);
-		
-		
-		
-
 	}
+
+	public void drawHerodead(PApplet app) {
+
+		app.imageMode(app.CENTER);
+		app.image(herodead, posX, posY);
+		app.imageMode(app.CORNER);
+	}
+
+
 
 }
