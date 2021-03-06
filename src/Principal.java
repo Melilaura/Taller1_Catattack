@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 import processing.core.PApplet;
 import processing.core.PImage;
 
@@ -10,13 +12,11 @@ public class Principal extends PApplet {
 
 	}
 
-	@Override
-	public void settings() {
-		size(1152, 700);
-
-	}
-
 	Hero hero;
+	
+	private ArrayList<Catswarriors> listaGatos1;
+	
+	Catswarriors kitty;
 	
 	// IMAGES
 	// wall
@@ -59,9 +59,18 @@ public class Principal extends PApplet {
 	
 	int s, m,h;
 
+	
+	@Override
+	public void settings() {
+		size(1152, 700);
+
+	}
+
+	
 	@Override
 	public void setup() {
 
+		
 		// LOAD IMAGES------------------------------------------
 		// load images wall
 		instructions = loadImage("instrucciones.png");
@@ -124,6 +133,9 @@ public class Principal extends PApplet {
 		//---------------------------------------------------
 		
 		hero = new Hero(this, 576, 600);
+		kitty = new Catswarriors (this, 576, 100);
+		
+		listaGatos1 = new ArrayList<Catswarriors>();
 
 	}
 
@@ -150,7 +162,8 @@ public class Principal extends PApplet {
 			image(game, 576, 350);
 			imageMode(CORNER);
 			
-			//TIMER-----------
+			//TIMER------------------------------------------------------
+			
 			textSize(35);
 			
 			if(s<=59) {
@@ -166,9 +179,13 @@ public class Principal extends PApplet {
 				m=0;				
 			}				
 			
+			//------------------------------------------------------
+			
 			//HERO
 			
 			hero.drawHero(this);
+			kitty.drawcat3(this);
+			kitty.catmov();
 			
 		}
 
@@ -184,18 +201,14 @@ public class Principal extends PApplet {
 	public void mousePressed() {
 
 		// BUTTONS MENU
+		
 		if (estado == 1) {
-
 			// play
 			if (mouseX > x1 && mouseX < x2 && mouseY > y1 && mouseY < y2) {
-
 				estado = 3;
 			}
-
 			// instructions
-
 			if (mouseX > x3 && mouseX < x4 && mouseY > y3 && mouseY < y4) {
-
 				estado = 2;
 			}
 		}
@@ -203,12 +216,10 @@ public class Principal extends PApplet {
 
 		if (estado == 2) {
 			if (mouseX > x5 && mouseX < x6 && mouseY > y5 && mouseY < y6) {
-
 				estado = 1;
 			}
-
+			
 			if (mouseX > x7 && mouseX < x8 && mouseY > y7 && mouseY < y8) {
-
 				estado = 3;
 			}
 		}
@@ -217,12 +228,10 @@ public class Principal extends PApplet {
 
 		if (estado == 4) {
 			if (mouseX > x9 && mouseX < x10 && mouseY > y9 && mouseY < y10) {
-
 				estado = 1;
 			}
 
 			if (mouseX > x11 && mouseX < x12 && mouseY > y11 && mouseY < y12) {
-
 				estado = 3;
 			}
 		}
@@ -234,7 +243,15 @@ public class Principal extends PApplet {
 				hero.mov(key);
 				}			
 		}
+
+	
+	
+	
+	public void drawWarriors() {
 		
+	
+		
+	}
 		
 	
 	
