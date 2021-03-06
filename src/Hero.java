@@ -1,3 +1,5 @@
+import java.util.Set;
+
 import processing.core.PApplet;
 import processing.core.PImage;
 
@@ -17,26 +19,43 @@ public class Hero {
 	}
 
 
-	public void drawHero( PApplet app ) {
+	public void drawHero(PApplet app) {
 
-		hero.resize (0,200);
+		hero.resize(0, 200);
 		app.imageMode(app.CENTER);
 		app.image(hero, posX, posY);
 		app.imageMode(app.CORNER);
 	}
-	
-	public void mov (int key) {
 
-		if (key == 'a') {
-			posX -= 5;
-			System.out.println("a, "+posX);
+	public void heroMov(PApplet app) {
 
-		}else if (key == 'd') {
-			posX += 5;
-			System.out.println("d "+ posX);
+		posX = app.mouseX;
 
+		if (posX < 0) {
+			posX = 20;
 		}
 
+		if (posX > 1152) {
+			posX = 1132;
+		}
+
+	}
+	
+	
+	public int getPosX() {
+		return posX;
+	}
+	
+	public int getPosY() {
+		return posY;
+	}
+	
+	public void setPosX(int posX) {
+		this.posX = posX;
+	}
+	
+	public void setPosY(int posY) {
+		this.posY = posY;
 	}
 
 

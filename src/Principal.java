@@ -15,6 +15,8 @@ public class Principal extends PApplet {
 	Hero hero;
 
 	private ArrayList<Catswarriors> listaGatos1;
+	private ArrayList<Catswarriors> listaGatos2;
+	private ArrayList<Catswarriors> listaGatos3;
 
 	Catswarriors kitty;
 
@@ -136,10 +138,12 @@ public class Principal extends PApplet {
 		kitty = new Catswarriors(this, 576, 100);
 
 		listaGatos1 = new ArrayList<Catswarriors>();
+		listaGatos2 = new ArrayList<Catswarriors>();
+		listaGatos3 = new ArrayList<Catswarriors>();
 
 		// --------------------------------------------------
-		frameRate(20);
-		score = 40;
+
+		score = 80;
 
 	}
 
@@ -189,11 +193,13 @@ public class Principal extends PApplet {
 			// HERO
 
 			hero.drawHero(this);
+			hero.heroMov(this);
 			kitty.drawcat3(this);
-			kitty.catmov();
+			kitty.catmov3();
 
 			initWarriors();
 			drawWarriors();
+			removeWarriors();
 
 		}
 
@@ -246,18 +252,51 @@ public class Principal extends PApplet {
 
 	}
 
-	public void keyPressed() {
-		if (estado == 3) {
-			hero.mov(key);
-		}
-	}
-
 	private void initWarriors() {
-		if (frameCount == 40) {
-			listaGatos1.add(new Catswarriors(this, (int) random(20, 1140), 100));
-			System.out.println(listaGatos1.size());
-			frameCount = 0;
+
+		
+		if (score == 0) {
+
+			frameRate(60);
+			if (frameCount == 60) {
+				listaGatos1.add(new Catswarriors(this, (int) random(30, 1130), 100));
+				// System.out.println(listaGatos1.size());
+				frameCount = 0;
+			}
+		} else if (score == 20) {
+			frameRate(20);
+			if (frameCount == 20) {
+				listaGatos2.add(new Catswarriors(this, (int) random(30, 1130), 100));
+				// System.out.println(listaGatos1.size());
+				frameCount = 0;
+			}
+
+		} else if (score == 40) {
+
+			frameRate(10);
+			if (frameCount == 10) {
+				listaGatos3.add(new Catswarriors(this, (int) random(30, 1130), 100));
+				System.out.println(listaGatos3.size());
+				frameCount = 0;
+			}
 		}
+
+		else if (score == 80) {
+
+			frameRate(10);
+			if (frameCount == 10) {
+				listaGatos3.add(new Catswarriors(this, (int) random(30, 1130), 100));
+				System.out.println(listaGatos3.size());
+
+				listaGatos2.add(new Catswarriors(this, (int) random(30, 1130), 100));
+				// System.out.println(listaGatos1.size());
+
+				listaGatos1.add(new Catswarriors(this, (int) random(30, 1130), 100));
+
+				frameCount = 0;
+			}
+		}
+
 	}
 
 	public void drawWarriors() {
@@ -265,25 +304,73 @@ public class Principal extends PApplet {
 		if (score == 0) {
 			for (int i = 0; i < listaGatos1.size(); i++) {
 				listaGatos1.get(i).drawcat1(this);
-				listaGatos1.get(i).catmov();
+				listaGatos1.get(i).catmov1();
 			}
-		}
+		} else if (score == 20) {
 
-		if (score == 20) {
-
-			for (int i = 0; i < listaGatos1.size(); i++) {
-				listaGatos1.get(i).drawcat2(this);
-				listaGatos1.get(i).catmov();
+			for (int i = 0; i < listaGatos2.size(); i++) {
+				listaGatos2.get(i).drawcat2(this);
+				listaGatos2.get(i).catmov2();
 
 			}
 
+		} else if (score == 40) {
+
+			for (int i = 0; i < listaGatos3.size(); i++) {
+				listaGatos3.get(i).drawcat3(this);
+				listaGatos3.get(i).catmov3();
+
+			}
+
 		}
 
-		if (score == 40) {
+		else if (score == 80) {
 
 			for (int i = 0; i < listaGatos1.size(); i++) {
-				listaGatos1.get(i).drawcat3(this);
-				listaGatos1.get(i).catmov();
+				listaGatos1.get(i).drawcat1(this);
+				listaGatos1.get(i).catmov1();
+			}
+
+			for (int i = 0; i < listaGatos2.size(); i++) {
+				listaGatos2.get(i).drawcat2(this);
+				listaGatos2.get(i).catmov2();
+
+			}
+
+			for (int i = 0; i < listaGatos3.size(); i++) {
+				listaGatos3.get(i).drawcat3(this);
+				listaGatos3.get(i).catmov3();
+
+			}
+
+		}
+
+	}
+
+	private void removeWarriors() {
+
+		for (int i = 0; i < listaGatos1.size(); i++) {
+			if (listaGatos1.get(i).getPosY() >= 700) {
+				listaGatos1.remove(i);
+				System.out.println("yes");
+
+			}
+
+		}
+
+		for (int i = 0; i < listaGatos2.size(); i++) {
+			if (listaGatos2.get(i).getPosY() >= 700) {
+				listaGatos2.remove(i);
+				System.out.println("yes");
+
+			}
+
+		}
+
+		for (int i = 0; i < listaGatos3.size(); i++) {
+			if (listaGatos3.get(i).getPosY() >= 700) {
+				listaGatos3.remove(i);
+				System.out.println("yes");
 
 			}
 
