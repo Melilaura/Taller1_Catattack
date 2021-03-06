@@ -14,8 +14,6 @@ public class Hero {
 		this.posY = posY;
 		hero= app.loadImage("hero1.png");
 		herodead = app.loadImage("hero2.png");
-		//this.app = app;
-
 	}
 
 

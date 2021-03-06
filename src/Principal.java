@@ -136,6 +136,8 @@ public class Principal extends PApplet {
 		kitty = new Catswarriors (this, 576, 100);
 		
 		listaGatos1 = new ArrayList<Catswarriors>();
+		
+		frameRate(60);
 
 	}
 
@@ -186,6 +188,9 @@ public class Principal extends PApplet {
 			hero.drawHero(this);
 			kitty.drawcat3(this);
 			kitty.catmov();
+			
+			initWarriors();
+			drawWarriors();
 			
 		}
 
@@ -243,15 +248,25 @@ public class Principal extends PApplet {
 				hero.mov(key);
 				}			
 		}
-
 	
-	
+	private void initWarriors() {
+		if (frameCount == 60) {
+			listaGatos1.add(new Catswarriors (this, 576, 100));
+			System.out.println(listaGatos1.size());
+			frameCount = 0;
+		}
+	}
 	
 	public void drawWarriors() {
 		
-	
+		for (int i = 0; i < listaGatos1.size(); i++) {
+			listaGatos1.get(i).drawcat1(this);
+			listaGatos1.get(i).catmov();
+		}
 		
 	}
+	
+
 		
 	
 	
