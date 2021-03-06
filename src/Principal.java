@@ -72,46 +72,46 @@ public class Principal extends PApplet {
 
 		// VARIABLES----------------------------------------------
 
-		estado = 1;
+		estado = 3;
 
 		// MENU
 		// button play
-		x1 = 412;
-		y1 = 360;
-		x2 = 687;
-		y2 = 430;
+		x1 = 369;
+		y1 = 614;
+		x2 = 562;
+		y2 = 673;
 
 		// button instructions
-		x3 = 412;
-		y3 = 448;
-		x4 = 687;
-		y4 = 510;
+		x3 = 589;
+		y3 = 614;
+		x4 = 782;
+		y4 = 673;
 
 		// INSTRUCTIONS
 		// button return
-		x5 = 21;
-		y5 = 594;
-		x6 = 296;
-		y6 = 677;
+		x5 = 922;
+		y5 = 611;
+		x6 = 1115;
+		y6 = 671;
 
 		// button play
-		x7 = 857;
-		y7 = 594;
-		x8 = 1130;
-		y8 = 677;
+		x7 = 479;
+		y7 = 611;
+		x8 = 672;
+		y8 = 670;
 
 		// RESUME
 		// button menu
-		x9 = 842;
-		y9 = 570;
-		x10 = 1116;
-		y10 = 653;
+		x9 = 481;
+		y9 = 620;
+		x10 = 1111;
+		y10 = 679;
 
 		// button return
-		x9 = 452;
-		y9 = 570;
-		x10 = 726;
-		y10 = 653;
+		x9 = 481;
+		y9 = 620;
+		x10 = 674;
+		y10 = 679;
 
 		// ------------------------------------------------
 		
@@ -155,7 +155,7 @@ public class Principal extends PApplet {
 			
 			if(s<=59) {
 				s= s+1;
-				text(h+" : " +m,750,40);
+				text(h+" : " +m,935,40);
 			} else {
 				m=m+1;
 				s=0;				
