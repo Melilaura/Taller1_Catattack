@@ -18,7 +18,7 @@ public class Bullet {
 	}
 
 
-	public void drawBala(PApplet app) {
+	public void drawBullet(PApplet app) {
 
 		//bullet.resize(0, 200);
 		app.imageMode(app.CENTER);
@@ -26,7 +26,7 @@ public class Bullet {
 		app.imageMode(app.CORNER);
 	}
 	
-	public void moverBala(int tanqueX, int tanqueY) {
+	public void movBullet(int heroX, int heroY) {
 
 		posY -= 5;
 
