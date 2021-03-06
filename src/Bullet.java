@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 import processing.core.PApplet;
 import processing.core.PImage;
 
@@ -7,6 +9,8 @@ public class Bullet {
 	private PApplet app;
 
 	public PImage bullet;
+	
+	
 	
 
 	public Bullet (PApplet app, int posX, int posY) {
@@ -28,7 +32,7 @@ public class Bullet {
 	
 	public void movBullet(int heroX, int heroY) {
 
-		posY -= 5;
+		posY -= 50;
 
 	}
 

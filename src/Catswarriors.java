@@ -84,6 +84,21 @@ public class Catswarriors {
 
 }
 	
+	
+	boolean validarBullet(int posXBullet, int posyBullet) {
+
+		if (posXBullet > posX && posXBullet < posX + 47 && posyBullet > posX && posyBullet < posY + 47) {
+
+			vida = 0;
+
+			return true;
+		}
+
+		return false;
+
+	}
+	
+	
 	public int getPosY() {
 		return posY;
 	}

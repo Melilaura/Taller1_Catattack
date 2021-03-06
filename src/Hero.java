@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Set;
 
 import processing.core.PApplet;
@@ -11,13 +12,20 @@ public class Hero {
 	public PImage hero;
 	public PImage herodead;
 
+	Bullet bullet;
+	
+	public ArrayList<Bullet> listaBullet;
+	
+	
+
 	public Hero(PApplet app, int posX, int posY) {
 		this.posX = posX;
 		this.posY = posY;
-		hero= app.loadImage("hero1.png");
+		hero = app.loadImage("hero1.png");
 		herodead = app.loadImage("hero2.png");
+		
+		listaBullet = new ArrayList<Bullet>();
 	}
-
 
 	public void drawHero(PApplet app) {
 
@@ -25,8 +33,17 @@ public class Hero {
 		app.imageMode(app.CENTER);
 		app.image(hero, posX, posY);
 		app.imageMode(app.CORNER);
-	}
 
+		if (bullet != null) {
+		for (int i = 0; i < listaBullet.size(); i++) {
+			 
+				listaBullet.get(i).drawBullet(app);
+				listaBullet.get(i).movBullet(posX, posY);
+
+		}
+	
+	}
+	}
 	public void heroMov(PApplet app) {
 
 		posX = app.mouseX;
@@ -40,25 +57,29 @@ public class Hero {
 		}
 
 	}
+
+	void shot(PApplet app) {
+		
+		listaBullet.add(new Bullet(app, posX, posY));
+		bullet = new Bullet(app, posX, posY);
+		
 	
-	
+	}
+
 	public int getPosX() {
 		return posX;
 	}
-	
+
 	public int getPosY() {
 		return posY;
 	}
-	
+
 	public void setPosX(int posX) {
 		this.posX = posX;
 	}
-	
+
 	public void setPosY(int posY) {
 		this.posY = posY;
 	}
-
-
-
 
 }

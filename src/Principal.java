@@ -6,8 +6,7 @@ import processing.core.PImage;
 public class Principal extends PApplet {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		
 		PApplet.main("Principal");
 
 	}
@@ -65,13 +64,12 @@ public class Principal extends PApplet {
 
 	int score;
 
-	@Override
+	
 	public void settings() {
 		size(1152, 700);
 
 	}
 
-	@Override
 	public void setup() {
 
 		// LOAD IMAGES------------------------------------------
@@ -147,7 +145,7 @@ public class Principal extends PApplet {
 
 	}
 
-	@Override
+	
 	public void draw() {
 
 		background(74, 86, 71);
@@ -249,6 +247,13 @@ public class Principal extends PApplet {
 				estado = 3;
 			}
 		}
+		
+		
+		// CLICK FOR SHOT
+
+				if (estado == 3) {
+					hero.shot(this);
+				}
 
 	}
 
