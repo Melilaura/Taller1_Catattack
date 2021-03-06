@@ -13,11 +13,11 @@ public class Principal extends PApplet {
 	}
 
 	Hero hero;
-	
+
 	private ArrayList<Catswarriors> listaGatos1;
-	
+
 	Catswarriors kitty;
-	
+
 	// IMAGES
 	// wall
 	PImage instructions;
@@ -54,30 +54,30 @@ public class Principal extends PApplet {
 
 	int x11, y11; // button menu
 	int x12, y12;
-	
-	//timer
-	
-	int s, m,h;
 
-	
+	// timer
+
+	int s, m, h;
+
+	// score
+
+	int score;
+
 	@Override
 	public void settings() {
 		size(1152, 700);
 
 	}
 
-	
 	@Override
 	public void setup() {
 
-		
 		// LOAD IMAGES------------------------------------------
 		// load images wall
 		instructions = loadImage("instrucciones.png");
 		menu = loadImage("menu.png");
 		resume = loadImage("resume.png");
 		game = loadImage("juego.png");
-
 
 		// VARIABLES----------------------------------------------
 
@@ -123,21 +123,23 @@ public class Principal extends PApplet {
 		y10 = 679;
 
 		// ------------------------------------------------
-		
-		//TIMER
-		
-		s=0;
-		m=0;
-		h=0;
-		
-		//---------------------------------------------------
-		
+
+		// TIMER
+
+		s = 0;
+		m = 0;
+		h = 0;
+
+		// ---------------------------------------------------
+
 		hero = new Hero(this, 576, 600);
-		kitty = new Catswarriors (this, 576, 100);
-		
+		kitty = new Catswarriors(this, 576, 100);
+
 		listaGatos1 = new ArrayList<Catswarriors>();
-		
-		frameRate(60);
+
+		// --------------------------------------------------
+		frameRate(20);
+		score = 40;
 
 	}
 
@@ -163,35 +165,36 @@ public class Principal extends PApplet {
 			imageMode(CENTER);
 			image(game, 576, 350);
 			imageMode(CORNER);
-			
-			//TIMER------------------------------------------------------
-			
+
+			// TIMER------------------------------------------------------
+
 			textSize(35);
-			
-			if(s<=59) {
-				s= s+1;
-				text(h+" : " +m,935,40);
+
+			if (s <= 59) {
+				s = s + 1;
+				text(h + " : " + m, 935, 40);
 			} else {
-				m=m+1;
-				s=0;				
-			}if(m<=59) {
-				
+				m = m + 1;
+				s = 0;
+			}
+			if (m <= 59) {
+
 			} else {
-				h=h+1;
-				m=0;				
-			}				
-			
-			//------------------------------------------------------
-			
-			//HERO
-			
+				h = h + 1;
+				m = 0;
+			}
+
+			// ------------------------------------------------------
+
+			// HERO
+
 			hero.drawHero(this);
 			kitty.drawcat3(this);
 			kitty.catmov();
-			
+
 			initWarriors();
 			drawWarriors();
-			
+
 		}
 
 		if (estado == 4) {
@@ -206,7 +209,7 @@ public class Principal extends PApplet {
 	public void mousePressed() {
 
 		// BUTTONS MENU
-		
+
 		if (estado == 1) {
 			// play
 			if (mouseX > x1 && mouseX < x2 && mouseY > y1 && mouseY < y2) {
@@ -223,7 +226,7 @@ public class Principal extends PApplet {
 			if (mouseX > x5 && mouseX < x6 && mouseY > y5 && mouseY < y6) {
 				estado = 1;
 			}
-			
+
 			if (mouseX > x7 && mouseX < x8 && mouseY > y7 && mouseY < y8) {
 				estado = 3;
 			}
@@ -242,34 +245,49 @@ public class Principal extends PApplet {
 		}
 
 	}
-	
+
 	public void keyPressed() {
-				if (estado==3){
-				hero.mov(key);
-				}			
+		if (estado == 3) {
+			hero.mov(key);
 		}
-	
+	}
+
 	private void initWarriors() {
-		if (frameCount == 60) {
-			listaGatos1.add(new Catswarriors (this, 576, 100));
+		if (frameCount == 40) {
+			listaGatos1.add(new Catswarriors(this, (int) random(20, 1140), 100));
 			System.out.println(listaGatos1.size());
 			frameCount = 0;
 		}
 	}
-	
+
 	public void drawWarriors() {
-		
-		for (int i = 0; i < listaGatos1.size(); i++) {
-			listaGatos1.get(i).drawcat1(this);
-			listaGatos1.get(i).catmov();
+
+		if (score == 0) {
+			for (int i = 0; i < listaGatos1.size(); i++) {
+				listaGatos1.get(i).drawcat1(this);
+				listaGatos1.get(i).catmov();
+			}
 		}
-		
+
+		if (score == 20) {
+
+			for (int i = 0; i < listaGatos1.size(); i++) {
+				listaGatos1.get(i).drawcat2(this);
+				listaGatos1.get(i).catmov();
+
+			}
+
+		}
+
+		if (score == 40) {
+
+			for (int i = 0; i < listaGatos1.size(); i++) {
+				listaGatos1.get(i).drawcat3(this);
+				listaGatos1.get(i).catmov();
+
+			}
+
+		}
+
 	}
-	
-
-		
-	
-	
-	
-
 }
