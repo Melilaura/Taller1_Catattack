@@ -5,35 +5,37 @@ import processing.core.PImage;
 
 public class Bullet {
 
-	private int posX, posY;
-	private PApplet app;
-
+	int posX;
+	int posY;
+	int direccion;
 	public PImage bullet;
 	
-	
-	
-
 	public Bullet (PApplet app, int posX, int posY) {
 		this.posX = posX;
 		this.posY = posY;
+		this.direccion=30;
 		
 		bullet= app.loadImage("bullet.png");
-		
 	}
 
-
-	public void drawBullet(PApplet app) {
-
-		//bullet.resize(0, 200);
+	void drawBullet(PApplet app) {
+		
 		app.imageMode(app.CENTER);
 		app.image(bullet, posX, posY);
 		app.imageMode(app.CORNER);
 	}
 	
-	public void movBullet(int heroX, int heroY) {
-
-		posY -= 50;
-
+ void movBullet( int heroposX, int heroposY) {
+	 
+		posY -= direccion;
 	}
+	
+	public int getPosX() {
+		return posX;
+	}
+	
+public int getPosY() {
+	return posY;
+}
 
 }

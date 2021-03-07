@@ -6,7 +6,7 @@ import processing.core.PImage;
 public class Principal extends PApplet {
 
 	public static void main(String[] args) {
-		
+
 		PApplet.main("Principal");
 
 	}
@@ -16,8 +16,6 @@ public class Principal extends PApplet {
 	private ArrayList<Catswarriors> listaGatos1;
 	private ArrayList<Catswarriors> listaGatos2;
 	private ArrayList<Catswarriors> listaGatos3;
-
-	Catswarriors kitty;
 
 	// IMAGES
 	// wall
@@ -64,7 +62,6 @@ public class Principal extends PApplet {
 
 	int score;
 
-	
 	public void settings() {
 		size(1152, 700);
 
@@ -133,7 +130,6 @@ public class Principal extends PApplet {
 		// ---------------------------------------------------
 
 		hero = new Hero(this, 576, 600);
-		kitty = new Catswarriors(this, 576, 100);
 
 		listaGatos1 = new ArrayList<Catswarriors>();
 		listaGatos2 = new ArrayList<Catswarriors>();
@@ -141,11 +137,10 @@ public class Principal extends PApplet {
 
 		// --------------------------------------------------
 
-		score = 80;
+		score = 0;
 
 	}
 
-	
 	public void draw() {
 
 		background(74, 86, 71);
@@ -192,13 +187,13 @@ public class Principal extends PApplet {
 
 			hero.drawHero(this);
 			hero.heroMov(this);
-			kitty.drawcat3(this);
-			kitty.catmov3();
 
 			initWarriors();
 			drawWarriors();
 			removeWarriors();
-
+			validateBullet();
+			
+		
 		}
 
 		if (estado == 4) {
@@ -209,11 +204,15 @@ public class Principal extends PApplet {
 
 	}
 
-	@Override
 	public void mousePressed() {
 
-		// BUTTONS MENU
+		pressedButtons();
+		pressedShot();
+	}
 
+	public void pressedButtons() {
+
+		// BUTTONS MENU
 		if (estado == 1) {
 			// play
 			if (mouseX > x1 && mouseX < x2 && mouseY > y1 && mouseY < y2) {
@@ -225,7 +224,6 @@ public class Principal extends PApplet {
 			}
 		}
 		// BUTTONS INSTRUCTIONS
-
 		if (estado == 2) {
 			if (mouseX > x5 && mouseX < x6 && mouseY > y5 && mouseY < y6) {
 				estado = 1;
@@ -237,7 +235,6 @@ public class Principal extends PApplet {
 		}
 
 		// BUTTONS RESUME
-
 		if (estado == 4) {
 			if (mouseX > x9 && mouseX < x10 && mouseY > y9 && mouseY < y10) {
 				estado = 1;
@@ -247,49 +244,48 @@ public class Principal extends PApplet {
 				estado = 3;
 			}
 		}
-		
-		
+	}
+
+	public void pressedShot() {
+
 		// CLICK FOR SHOT
+		if (estado == 3) {
 
-				if (estado == 3) {
-					hero.shot(this);
-				}
-
+			hero.shot(this);
+			
+		}
 	}
 
 	private void initWarriors() {
 
-		
 		if (score == 0) {
 
 			frameRate(60);
 			if (frameCount == 60) {
 				listaGatos1.add(new Catswarriors(this, (int) random(30, 1130), 100));
-				// System.out.println(listaGatos1.size());
+				//validateBullet();
 				frameCount = 0;
 			}
 		} else if (score == 20) {
-			frameRate(20);
-			if (frameCount == 20) {
+			frameRate(60);
+			if (frameCount == 60) {
 				listaGatos2.add(new Catswarriors(this, (int) random(30, 1130), 100));
-				// System.out.println(listaGatos1.size());
 				frameCount = 0;
 			}
 
 		} else if (score == 40) {
 
-			frameRate(10);
-			if (frameCount == 10) {
+			frameRate(60);
+			if (frameCount == 60) {
 				listaGatos3.add(new Catswarriors(this, (int) random(30, 1130), 100));
-				System.out.println(listaGatos3.size());
 				frameCount = 0;
 			}
 		}
 
 		else if (score == 80) {
 
-			frameRate(10);
-			if (frameCount == 10) {
+			frameRate(60);
+			if (frameCount == 60) {
 				listaGatos3.add(new Catswarriors(this, (int) random(30, 1130), 100));
 				System.out.println(listaGatos3.size());
 
@@ -309,7 +305,8 @@ public class Principal extends PApplet {
 		if (score == 0) {
 			for (int i = 0; i < listaGatos1.size(); i++) {
 				listaGatos1.get(i).drawcat1(this);
-				listaGatos1.get(i).catmov1();
+				//listaGatos1.get(i).catmov1();
+				// System.out.println(listaGatos1.get(i).getVida());
 			}
 		} else if (score == 20) {
 
@@ -358,7 +355,6 @@ public class Principal extends PApplet {
 			if (listaGatos1.get(i).getPosY() >= 700) {
 				listaGatos1.remove(i);
 				System.out.println("yes");
-
 			}
 
 		}
@@ -367,7 +363,6 @@ public class Principal extends PApplet {
 			if (listaGatos2.get(i).getPosY() >= 700) {
 				listaGatos2.remove(i);
 				System.out.println("yes");
-
 			}
 
 		}
@@ -376,10 +371,30 @@ public class Principal extends PApplet {
 			if (listaGatos3.get(i).getPosY() >= 700) {
 				listaGatos3.remove(i);
 				System.out.println("yes");
-
 			}
 
 		}
 
 	}
+
+	 private void validateBullet() {
+
+	/*	for (int i = 0; i < listaGatos1.size(); i++) {
+
+			if (hero.listaBullet != null && listaGatos1.get(i).validarBullet(hero.listaBullet.get(i).getPosX(),hero.listaBullet.get(i).getPosY()) == true) {
+				println("pum yei");
+				hero.listaBullet = null;
+			}
+
+		} */
+		 for (int i = 0; i < listaGatos1.size(); i++) {
+		 if (hero.bullet != null && listaGatos1.get(i).validarBullet(hero.bullet.posX ,hero.bullet.posX) == true) {
+				println("pum yei");
+				hero.bullet = null;
+
+			}
+		 }
+
+	} 
+
 }
