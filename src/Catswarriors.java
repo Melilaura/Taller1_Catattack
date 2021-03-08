@@ -25,12 +25,9 @@ public class Catswarriors {
 	public void drawcat1(PApplet app) {
 
 		if (vida == 3) {
-
-			// app.imageMode(app.CENTER);
-			app.image(cat1, posX, posY);
-			// app.imageMode(app.CORNER);
-			catmov1(app);
 			
+			app.image(cat1, posX, posY);
+			catmov1(app);			
 		}
 
 	}
@@ -39,10 +36,8 @@ public class Catswarriors {
 
 		if (vida == 3) {
 
-			// app.imageMode(app.CENTER);
 			app.image(cat2, posX, posY);
-			// app.imageMode(app.CORNER);
-			
+			catmov2(app);
 		}
 	}
 
@@ -50,10 +45,8 @@ public class Catswarriors {
 
 		if (vida == 3) {
 
-			// app.imageMode(app.CENTER);
 			app.image(cat3, posX, posY);
-			// app.imageMode(app.CORNER);
-			
+			catmov3(app);
 		}
 
 	}

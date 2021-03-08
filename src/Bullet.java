@@ -7,7 +7,7 @@ public class Bullet {
 
 	private PApplet app;
 	public int X, Y, speed;
-	public boolean visible;
+	public boolean visible, mover;
 	private PImage bullet;
 
 	public Bullet(PApplet app, int X, int Y) {
@@ -17,7 +17,8 @@ public class Bullet {
 		this.X = X;
 		this.Y = Y;
 		this.speed = 30;
-		visible = true;
+		visible = true;	
+		this.mover=true;
 		
 	}
 
@@ -25,7 +26,7 @@ public class Bullet {
 		
 		if (visible == true) {
 			
-			app.image(bullet, X, Y,100,100);
+			app.image(bullet, X,X,100,100);
 		}
 
 	}
