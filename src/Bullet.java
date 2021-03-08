@@ -1,41 +1,53 @@
 import java.util.ArrayList;
-
 import processing.core.PApplet;
+import processing.core.PConstants;
 import processing.core.PImage;
 
 public class Bullet {
 
-	int posX;
-	int posY;
-	int direccion;
-	public PImage bullet;
-	
-	public Bullet (PApplet app, int posX, int posY) {
-		this.posX = posX;
-		this.posY = posY;
-		this.direccion=30;
+	private PApplet app;
+	public int X, Y, speed;
+	public boolean visible;
+	private PImage bullet;
+
+	public Bullet(PApplet app, int X, int Y) {
 		
-		bullet= app.loadImage("bullet.png");
+		bullet = app.loadImage("data/bullet.png");
+		this.app=app;
+		this.X = X;
+		this.Y = Y;
+		this.speed = 30;
+		visible = true;
+		
 	}
 
-	void drawBullet(PApplet app) {
+	public void drawBullet() {
 		
-		app.imageMode(app.CENTER);
-		app.image(bullet, posX, posY);
-		app.imageMode(app.CORNER);
+		if (visible == true) {
+			
+			app.image(bullet, X, Y,100,100);
+		}
+
+	}
+
+	public void moveBullet() {
+		
+		Y -= speed;
+	}
+
+	public int getX() {
+		return X;
+	}
+
+	public int getY() {
+		return Y;
 	}
 	
- void movBullet( int heroposX, int heroposY) {
-	 
-		posY -= direccion;
+	public void setVisible(boolean visible) {
+		this.visible = visible;
 	}
+
 	
-	public int getPosX() {
-		return posX;
-	}
-	
-public int getPosY() {
-	return posY;
-}
 
 }
+

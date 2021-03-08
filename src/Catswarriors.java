@@ -5,7 +5,7 @@ import processing.core.PImage;
 
 public class Catswarriors {
 
-	private int posX, posY, vida, direccion, velocidad;
+	public int posX, posY, vida, direccion, velocidad;
 	private PImage cat1;
 	private PImage cat2;
 	private PImage cat3;
@@ -31,9 +31,7 @@ public class Catswarriors {
 			app.imageMode(app.CENTER);
 			app.image(cat1, posX, posY);
 			app.imageMode(app.CORNER);
-			
 			catmov1();
-			
 		}
 
 	}
@@ -72,17 +70,6 @@ public class Catswarriors {
 
 	}
 
-	boolean validarBullet(int posXBullet, int posYBullet) {
-
-		if (posXBullet > posX && posXBullet < posX + 100 && posYBullet > posX && posYBullet < posY + 150) {
-			
-			
-			vida = 0;
-			return true;
-		}
-		return false;
-	}
-
 	public int getPosY() {
 		return posY;
 	}
@@ -91,12 +78,12 @@ public class Catswarriors {
 		return posX;
 	}
 
-	public int getDireccion() {
-		return direccion;
-	}
-
 	public int getVida() {
 		return vida;
+	}
+	
+	public void setVida(int vida) {
+		this.vida = vida;
 	}
 
 }

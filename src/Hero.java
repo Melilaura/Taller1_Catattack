@@ -1,50 +1,36 @@
 import java.util.ArrayList;
 import java.util.Set;
-
 import processing.core.PApplet;
 import processing.core.PImage;
 
 public class Hero {
 
-	private int posX, posY;
-	public PImage hero;
-	public PImage herodead;
-	public int d;
-	public ArrayList<Bullet> listaBullet;
-	Bullet bullet;
+	private PApplet app;
+	public int posX, posY, coolDown, d;
+	public PImage hero, bullet;
+	private ArrayList<Bullet> bullets;
+	
 
+
+	
 	public Hero(PApplet app, int posX, int posY) {
+		this.app=app;
 		this.posX = posX;
 		this.posY = posY;
 		this.d=0;
-		hero = app.loadImage("hero1.png");
-		herodead = app.loadImage("hero2.png");
 		
-		listaBullet = new ArrayList<Bullet>();
+		bullets = new ArrayList<>();
+		
+		hero = app.loadImage("hero1.png");
+		//herodead = app.loadImage("hero2.png");
 	}
 
-	public void drawHero(PApplet app) {
+	void drawHero(PApplet app) {
 
 		hero.resize(0, 200);
-		app.imageMode(app.CENTER);
 		app.image(hero, posX, posY);
-		app.imageMode(app.CORNER);
 
-if (bullet != null) {
-			
-	bullet.drawBullet(app);
-	bullet.movBullet(posX, posY);
-		}
-		
-		/* if (d==1) {
-			for (int i = 0; i < listaBullet.size(); i++) {
-
-				listaBullet.get(i).drawBullet(app);
-				listaBullet.get(i).movBullet(posX, posY);
-			}
-
-		} */
-	}
+	} 
 
 	public void heroMov(PApplet app) {
 
@@ -52,19 +38,40 @@ if (bullet != null) {
 
 		if (posX < 0) {
 			posX = 20;
-		}
-
-		if (posX > 1152) {
-			posX = 1132;
+		} else if (posX > 1020) {
+			posX = 1020;
 		}
 	}
 
-	void shot(PApplet app) {
+	public void generateBullet() {
 
-				//listaBullet.add(new Bullet(app, posX, posY));
-				//d=1;
-				bullet = new Bullet(app, posX, posY);
+			
+			Bullet bullet = new Bullet(app, posX, posY);
+			bullets.add(bullet);
+
+
 	}
+
+	public void shootBullet() {
+
+		for (int i = 0; i <bullets.size();i++) {
+			//bullets.get(i).setVisible(true);
+			bullets.get(i).drawBullet();
+			bullets.get(i).moveBullet();
+		}
+	}
+	
+	public void eliminateBullet() {
+		for (int i = 0; i <bullets.size();i++) {
+			if (bullets.get(i).getY()<0) {
+				bullets.remove(i);
+			}
+			
+		}
+		
+	}
+
+
 
 	public int getPosX() {
 		return posX;
@@ -81,5 +88,14 @@ if (bullet != null) {
 	public void setPosY(int posY) {
 		this.posY = posY;
 	}
+	public int getD() {
+		return d;
+	}
+	
+	public void setD(int d) {
+		this.d = d;
+	}
+	
+	
 
 }
