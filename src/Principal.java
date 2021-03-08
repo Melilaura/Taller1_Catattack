@@ -174,8 +174,6 @@ public class Principal extends PApplet {
 			// TIMER------------------------------------------------------
 
 			textSize(35);
-            int s= second();
-            int m= minute();
 			
 			if (s <= 59) {
 				s = s + 1;
