@@ -174,10 +174,10 @@ public class Principal extends PApplet {
 			// TIMER------------------------------------------------------
 
 			textSize(35);
-			
+
 			if (s <= 59) {
 				s = s + 1;
-				text(h + " : " + m, 935, 40);
+				text(h + " : " + m, 935, 42);
 			} else {
 				m = m + 1;
 				s = 0;
@@ -192,11 +192,19 @@ public class Principal extends PApplet {
 
 			// ------------------------------------------------------
 
+			// TIMER------------------------------------------------------
+
+			textSize(35);
+
+			text(score, 127, 42);
+
+			// ------------------------------------------------------
+
 			// HERO
 
 			hero.drawHero(this);
 			hero.heroMov(this);
-		
+
 			initWarriors();
 			drawWarriors();
 			removeWarriors();
@@ -246,8 +254,8 @@ public class Principal extends PApplet {
 		}
 
 		if (estado == 3) {
-			hero.generateBullet();
-			hero.shootBullet();
+			// hero.generateBullet();
+			// hero.shootBullet();
 			pressedShot();
 		}
 
@@ -266,15 +274,58 @@ public class Principal extends PApplet {
 
 	public void pressedShot() {
 
-		for (int i = 0; i < listaGatos1.size(); i++) {
-			if (dist(mouseX, mouseY, listaGatos1.get(i).getPosX() + 65, listaGatos1.get(i).getPosY() + 93) < 40) {
+		// GATO 1
+		if (m<=20) {
+			for (int i = 0; i < listaGatos1.size(); i++) {
+				if (dist(mouseX, mouseY, listaGatos1.get(i).getPosX() + 70, listaGatos1.get(i).getPosY() + 95) < 40) {
 
-				stroke(77, 133, 69);
-				strokeWeight(10);
-				line(hero.getPosX() + 65, hero.getPosY() + 93, listaGatos1.get(i).getPosX() + 65,listaGatos1.get(i).getPosY() + 93);
+					stroke(77, 133, 69);
+					strokeWeight(10);
+					line(hero.getPosX() + 65, hero.getPosY() + 93, listaGatos1.get(i).getPosX() + 65, listaGatos1.get(i).getPosY() + 93);
 
-				System.out.println("yas this time :D");
-				listaGatos1.remove(i);
+					System.out.println("yas this time :D");
+					listaGatos1.remove(i);
+					score += 10;
+				}
+
+			}
+
+		}
+
+		// GATO 2
+		if (m>=21 && m<=50) {
+			for (int i = 0; i < listaGatos2.size(); i++) {
+				if (dist(mouseX, mouseY, listaGatos2.get(i).getPosX() + 70, listaGatos2.get(i).getPosY() + 95) < 40) {
+
+					stroke(77, 133, 69);
+					strokeWeight(10);
+					line(hero.getPosX() + 65, hero.getPosY() + 93, listaGatos2.get(i).getPosX() + 65,
+							listaGatos2.get(i).getPosY() + 93);
+
+					System.out.println("yas this time :D");
+					listaGatos2.remove(i);
+					score += 10;
+				}
+
+			}
+
+		}
+
+		// GATO 3
+		if (h > 1) {
+			for (int i = 0; i < listaGatos3.size(); i++) {
+				if (dist(mouseX, mouseY, listaGatos3.get(i).getPosX() + 70, listaGatos3.get(i).getPosY() + 95) < 40) {
+
+					stroke(77, 133, 69);
+					strokeWeight(10);
+					line(hero.getPosX() + 65, hero.getPosY() + 93, listaGatos3.get(i).getPosX() + 65,
+							listaGatos3.get(i).getPosY() + 93);
+
+					System.out.println("yas this time :D");
+					listaGatos3.remove(i);
+					score += 10;
+				}
+
 			}
 
 		}
@@ -282,36 +333,98 @@ public class Principal extends PApplet {
 	}
 
 	private void initWarriors() {
+		// GATO 1
 
-		frameRate(60);
-		if (frameCount == 60) {
-			listaGatos1.add(new Catswarriors(this, (int) random(50, 1000), 100));
-			frameCount = 0;
+		if (m<=20) {
+			
+			frameRate(60);
+			if (frameCount == 60) {
+				listaGatos1.add(new Catswarriors(this, (int) random(50, 1000), 100));
+				frameCount = 0;
+			}
 		}
+		// GATO 2
 
+		if (m>=21 && m<=50) {
+			
+			frameRate(120);
+			if (frameCount == 60) {
+				listaGatos2.add(new Catswarriors(this, (int) random(50, 1000), 100));
+				frameCount = 0;
+			}
+		}
+		// GATO 3
+
+		if (h > 1) {
+			frameRate(60);
+			if (frameCount == 60) {
+				listaGatos3.add(new Catswarriors(this, (int) random(50, 1000), 100));
+				frameCount = 0;
+			}
+		}
 	}
 
 	public void drawWarriors() {
 
-		for (int i = 0; i < listaGatos1.size(); i++) {
-			listaGatos1.get(i).drawcat1(this);
+		if (m<=20) {
+			for (int i = 0; i < listaGatos1.size(); i++) {
+				listaGatos1.get(i).drawcat1(this);
+			}
 		}
 
+		if (m>=21 && m<=60) {
+			for (int i = 0; i < listaGatos2.size(); i++) {
+				listaGatos2.get(i).drawcat2(this);
+			}
+		}
+
+		if (h > 1) {
+			for (int i = 0; i < listaGatos3.size(); i++) {
+				listaGatos3.get(i).drawcat3(this);
+			}
+		}
 	}
 
 	private void removeWarriors() {
 
-		for (int i = 0; i < listaGatos1.size(); i++) {
-			
-			if (listaGatos1.get(i).getPosY() >= 500) {
-				
-				System.out.println(":D");
-				lose = true;
-				listaGatos1.remove(i);
-			}
+		if (m<=20) {
+			for (int i = 0; i < listaGatos1.size(); i++) {
 
+				if (listaGatos1.get(i).getPosY() >= 500) {
+
+					System.out.println(":D");
+					lose = true;
+					listaGatos1.remove(i);
+				}
+
+			}
 		}
 
+		if (m>=21 && m<=60) {
+			for (int i = 0; i < listaGatos2.size(); i++) {
+
+				if (listaGatos2.get(i).getPosY() >= 500) {
+
+					System.out.println(":D");
+					lose = true;
+					listaGatos2.remove(i);
+				}
+
+			}
+		}
+
+		if (h > 1) {
+			for (int i = 0; i < listaGatos3.size(); i++) {
+
+				if (listaGatos3.get(i).getPosY() >= 500) {
+
+					System.out.println(":D");
+					lose = true;
+					listaGatos3.remove(i);
+				}
+
+			}
+		}
 	}
 
 }
