@@ -11,7 +11,7 @@ public class Catswarriors {
 	private PImage cat3;
 
 	Catswarriors(PApplet app, int posX, int posY) {
-		
+
 		this.posX = posX;
 		this.posY = posY;
 		this.direccion = 1;
@@ -19,18 +19,17 @@ public class Catswarriors {
 		cat1 = app.loadImage("cat1.png");
 		cat2 = app.loadImage("cat2.png");
 		cat3 = app.loadImage("cat3.png");
-		vida = 1 ;
+		vida = 3;
 
 	}
 
 	public void drawcat1(PApplet app) {
 
-		
-		if(vida==1) {
-			
-			app.imageMode(app.CENTER);
+		if (vida == 3) {
+
+			// app.imageMode(app.CENTER);
 			app.image(cat1, posX, posY);
-			app.imageMode(app.CORNER);
+			// app.imageMode(app.CORNER);
 			catmov1();
 		}
 
@@ -38,16 +37,25 @@ public class Catswarriors {
 
 	public void drawcat2(PApplet app) {
 
-		app.imageMode(app.CENTER);
-		app.image(cat2, posX, posY);
-		app.imageMode(app.CORNER);
+		if (vida == 3) {
+
+			// app.imageMode(app.CENTER);
+			app.image(cat2, posX, posY);
+			// app.imageMode(app.CORNER);
+			catmov1();
+		}
 	}
 
 	public void drawcat3(PApplet app) {
 
-		app.imageMode(app.CENTER);
-		app.image(cat3, posX, posY);
-		app.imageMode(app.CORNER);
+		if (vida == 3) {
+
+			// app.imageMode(app.CENTER);
+			app.image(cat3, posX, posY);
+			// app.imageMode(app.CORNER);
+			catmov1();
+		}
+
 	}
 
 	public void catmov1() {
@@ -69,6 +77,12 @@ public class Catswarriors {
 		posY += velocidad;
 
 	}
+	
+
+	
+	
+	
+	
 
 	public int getPosY() {
 		return posY;
@@ -85,5 +99,7 @@ public class Catswarriors {
 	public void setVida(int vida) {
 		this.vida = vida;
 	}
+	
+	
 
 }

@@ -12,7 +12,7 @@ public class Bullet {
 
 	public Bullet(PApplet app, int X, int Y) {
 		
-		bullet = app.loadImage("data/bullet.png");
+		bullet = app.loadImage("./data/bullet.png");
 		this.app=app;
 		this.X = X;
 		this.Y = Y;
@@ -47,6 +47,7 @@ public class Bullet {
 		this.visible = visible;
 	}
 
+	
 	
 
 }

@@ -9,20 +9,17 @@ public class Hero {
 	public int posX, posY, coolDown, d;
 	public PImage hero, bullet;
 	private ArrayList<Bullet> bullets;
-	
 
+	public Hero(PApplet app) {
+		this.app = app;
+		this.posX = 576;
+		this.posY = 500;
+		this.coolDown=0;
 
-	
-	public Hero(PApplet app, int posX, int posY) {
-		this.app=app;
-		this.posX = posX;
-		this.posY = posY;
-		this.d=0;
-		
+		hero = app.loadImage("./data/hero1.png");
+
 		bullets = new ArrayList<>();
-		
-		hero = app.loadImage("hero1.png");
-		//herodead = app.loadImage("hero2.png");
+
 	}
 
 	void drawHero(PApplet app) {
@@ -30,7 +27,7 @@ public class Hero {
 		hero.resize(0, 200);
 		app.image(hero, posX, posY);
 
-	} 
+	}
 
 	public void heroMov(PApplet app) {
 
@@ -44,34 +41,39 @@ public class Hero {
 	}
 
 	public void generateBullet() {
-
-			
+		if (coolDown == 0) {
 			Bullet bullet = new Bullet(app, posX, posY);
 			bullets.add(bullet);
 
+		}
 
 	}
 
 	public void shootBullet() {
 
-		for (int i = 0; i <bullets.size();i++) {
-			//bullets.get(i).setVisible(true);
+		for (int i = 0; i < bullets.size(); i++) {
+			// bullets.get(i).setVisible(true);
+
 			bullets.get(i).drawBullet();
 			bullets.get(i).moveBullet();
+
 		}
 	}
-	
+
 	public void eliminateBullet() {
-		for (int i = 0; i <bullets.size();i++) {
-			if (bullets.get(i).getY()<0) {
+		for (int i = 0; i < bullets.size(); i++) {
+			if (bullets.get(i).getY() < 0) {
 				bullets.remove(i);
 			}
-			
+
 		}
-		
+
 	}
 
+	public ArrayList<Bullet> getBullets() {
+		return bullets;
 
+	}
 
 	public int getPosX() {
 		return posX;
@@ -88,14 +90,13 @@ public class Hero {
 	public void setPosY(int posY) {
 		this.posY = posY;
 	}
+
 	public int getD() {
 		return d;
 	}
-	
+
 	public void setD(int d) {
 		this.d = d;
 	}
-	
-	
 
 }
