@@ -6,7 +6,7 @@ import processing.core.PImage;
 public class Hero {
 
 	private PApplet app;
-	public int posX, posY, coolDown, d;
+	public int posX, posY, coolDown ;
 	public PImage hero, bullet;
 	private ArrayList<Bullet> bullets;
 
@@ -91,12 +91,6 @@ public class Hero {
 		this.posY = posY;
 	}
 
-	public int getD() {
-		return d;
-	}
 
-	public void setD(int d) {
-		this.d = d;
-	}
 
 }
