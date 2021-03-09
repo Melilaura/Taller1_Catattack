@@ -278,10 +278,10 @@ public class Principal extends PApplet {
 
 			}
 
-		}
+		}else
 
 		// GATO 2
-		if (m>=21 && m<=50) {
+		if (m>=21 && m<=59) {
 			for (int i = 0; i < listaGatos2.size(); i++) {
 				if (dist(mouseX, mouseY, listaGatos2.get(i).getPosX() + 70, listaGatos2.get(i).getPosY() + 95) < 40) {
 
@@ -297,10 +297,10 @@ public class Principal extends PApplet {
 
 			}
 
-		}
+		}else
 
 		// GATO 3
-		if (h > 1) {
+		if (h >= 1 && m<=59) {
 			for (int i = 0; i < listaGatos3.size(); i++) {
 				if (dist(mouseX, mouseY, listaGatos3.get(i).getPosX() + 70, listaGatos3.get(i).getPosY() + 95) < 40) {
 
@@ -330,20 +330,20 @@ public class Principal extends PApplet {
 				listaGatos1.add(new Catswarriors(this, (int) random(50, 1000), 100));
 				frameCount = 0;
 			}
-		}
+		}else
 		
 		// GATO 2
-		if (m>=21 && m<=60) {
+		if (m>=21 && m<=59) {
 			
 			frameRate(30);
 			if (frameCount == 30) {
 				listaGatos2.add(new Catswarriors(this, (int) random(50, 1000), 100));
 				frameCount = 0;
 			}
-		}
+		}else
 		
 		// GATO 3
-		if (h >= 1) {
+		if (h >= 1 && m<=59) {
 			frameRate(15);
 			if (frameCount == 15) {
 				listaGatos3.add(new Catswarriors(this, (int) random(50, 1000), 100));
@@ -358,15 +358,15 @@ public class Principal extends PApplet {
 			for (int i = 0; i < listaGatos1.size(); i++) {
 				listaGatos1.get(i).drawcat1(this);
 			}
-		}
-
-		if (m>=21 && m<=60) {
+		}else
+        //
+		if (m>=21 && m<=59) {
 			for (int i = 0; i < listaGatos2.size(); i++) {
 				listaGatos2.get(i).drawcat2(this);
 			}
-		}
-
-		if (h >= 1) {
+		}else
+         //
+		if (h >= 1 && m<=59) {
 			for (int i = 0; i < listaGatos3.size(); i++) {
 				listaGatos3.get(i).drawcat3(this);
 			}
@@ -379,7 +379,6 @@ public class Principal extends PApplet {
 			for (int i = 0; i < listaGatos1.size(); i++) {
 
 				if (listaGatos1.get(i).getPosY() >= 500) {
-
 					System.out.println(":D");
 					lose = true;
 					listaGatos1.remove(i);
@@ -388,7 +387,7 @@ public class Principal extends PApplet {
 			}
 		}
 
-		if (m>=21 && m<=60) {
+		if (m>=21 && m<=59) {
 			for (int i = 0; i < listaGatos2.size(); i++) {
 
 				if (listaGatos2.get(i).getPosY() >= 500) {
