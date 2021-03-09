@@ -79,7 +79,7 @@ public class Principal extends PApplet {
 
 		// VARIABLES----------------------------------------------
 
-		estado = 3;
+		estado = 1;
 		lose = false;
 
 		// MENU
@@ -132,13 +132,13 @@ public class Principal extends PApplet {
 		// ---------------------------------------------------
 
 		hero = new Hero(this);
-		// bullet = new Bullet(this,0,0);
+	
 
 		listaGatos1 = new ArrayList<Catswarriors>();
 		listaGatos2 = new ArrayList<Catswarriors>();
 		listaGatos3 = new ArrayList<Catswarriors>();
 
-		// bullets = new ArrayList <>();
+
 
 		// --------------------------------------------------
 
@@ -155,77 +155,66 @@ public class Principal extends PApplet {
 			imageMode(CENTER);
 			image(menu, 576, 350);
 			imageMode(CORNER);
-			// lose=false;
+			
 
-		}
-
-		if (estado == 2) {
+		}else if (estado == 2) {
 			imageMode(CENTER);
 			image(instructions, 576, 350);
 			imageMode(CORNER);
-			// lose=false;
-		}
-
-		if (estado == 3) {
+			
+		}else if (estado == 3) {
 			imageMode(CENTER);
 			image(game, 576, 350);
 			imageMode(CORNER);
+			
+			initWarriors();
+			drawWarriors();
+			removeWarriors();
 
 			// TIMER------------------------------------------------------
 
 			textSize(35);
 
 			if (s <= 59) {
+				
 				s = s + 1;
-				text(h + " : " + m, 935, 42);
+				text(h + " : " + m, 935, 39);
+				
 			} else {
+				
 				m = m + 1;
 				s = 0;
 			}
 			if (m <= 59) {
 
 			} else {
+				
 				h = h + 1;
 				m = 0;
-
 			}
-
-			// ------------------------------------------------------
-
-			// TIMER------------------------------------------------------
 
 			textSize(35);
 
-			text(score, 127, 42);
-
-			// ------------------------------------------------------
-
-			// HERO
+			text(score, 280, 39);
 
 			hero.drawHero(this);
 			hero.heroMov(this);
 
-			initWarriors();
-			drawWarriors();
-			removeWarriors();
-
 			if (lose == true) {
-
+				
 				estado = 4;
-
 			}
 
-		}
-
-		if (estado == 4) {
+		} else 	if (estado == 4) {
+			
 			imageMode(CENTER);
 			image(resume, 576, 350);
 			imageMode(CORNER);
 
 			textSize(50);
 			text(h + " : " + m, 520, 455);
+			text(score, 525, 291);
 			noFill();
-
 		}
 
 	}
@@ -235,14 +224,16 @@ public class Principal extends PApplet {
 		if (estado == 1) {
 			// play
 			if (mouseX > x1 && mouseX < x2 && mouseY > y1 && mouseY < y2) {
+				
 				estado = 3;
 			}
 			// instructions
 			if (mouseX > x3 && mouseX < x4 && mouseY > y3 && mouseY < y4) {
 				estado = 2;
+				
 			}
-		}
-		// BUTTONS INSTRUCTIONS
+		}else
+			// BUTTONS INSTRUCTIONS
 		if (estado == 2) {
 			if (mouseX > x5 && mouseX < x6 && mouseY > y5 && mouseY < y6) {
 				estado = 1;
@@ -251,19 +242,16 @@ public class Principal extends PApplet {
 			if (mouseX > x7 && mouseX < x8 && mouseY > y7 && mouseY < y8) {
 				estado = 3;
 			}
-		}
+		}else
 
 		if (estado == 3) {
-			// hero.generateBullet();
-			// hero.shootBullet();
 			pressedShot();
-		}
+		}else
 
 		// BUTTONS RESUME
 		if (estado == 4) {
 			if (mouseX > x9 && mouseX < x10 && mouseY > y9 && mouseY < y10) {
-				estado = 1;
-
+				
 				exit();
 
 			}
@@ -304,7 +292,7 @@ public class Principal extends PApplet {
 
 					System.out.println("yas this time :D");
 					listaGatos2.remove(i);
-					score += 10;
+					score += 20;
 				}
 
 			}
@@ -323,7 +311,7 @@ public class Principal extends PApplet {
 
 					System.out.println("yas this time :D");
 					listaGatos3.remove(i);
-					score += 10;
+					score += 30;
 				}
 
 			}
@@ -333,8 +321,8 @@ public class Principal extends PApplet {
 	}
 
 	private void initWarriors() {
+		
 		// GATO 1
-
 		if (m<=20) {
 			
 			frameRate(60);
@@ -343,21 +331,21 @@ public class Principal extends PApplet {
 				frameCount = 0;
 			}
 		}
+		
 		// GATO 2
-
-		if (m>=21 && m<=50) {
+		if (m>=21 && m<=60) {
 			
-			frameRate(120);
-			if (frameCount == 60) {
+			frameRate(30);
+			if (frameCount == 30) {
 				listaGatos2.add(new Catswarriors(this, (int) random(50, 1000), 100));
 				frameCount = 0;
 			}
 		}
+		
 		// GATO 3
-
-		if (h > 1) {
-			frameRate(60);
-			if (frameCount == 60) {
+		if (h >= 1) {
+			frameRate(15);
+			if (frameCount == 15) {
 				listaGatos3.add(new Catswarriors(this, (int) random(50, 1000), 100));
 				frameCount = 0;
 			}
@@ -378,7 +366,7 @@ public class Principal extends PApplet {
 			}
 		}
 
-		if (h > 1) {
+		if (h >= 1) {
 			for (int i = 0; i < listaGatos3.size(); i++) {
 				listaGatos3.get(i).drawcat3(this);
 			}
@@ -413,7 +401,7 @@ public class Principal extends PApplet {
 			}
 		}
 
-		if (h > 1) {
+		if (h >= 1) {
 			for (int i = 0; i < listaGatos3.size(); i++) {
 
 				if (listaGatos3.get(i).getPosY() >= 500) {

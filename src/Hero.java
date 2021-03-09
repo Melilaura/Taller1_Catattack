@@ -40,41 +40,7 @@ public class Hero {
 		}
 	}
 
-	public void generateBullet() {
-		if (coolDown == 0) {
-			Bullet bullet = new Bullet(app, posX, posY);
-			bullets.add(bullet);
-
-		}
-
-	}
-
-	public void shootBullet() {
-
-		for (int i = 0; i < bullets.size(); i++) {
-			// bullets.get(i).setVisible(true);
-
-			bullets.get(i).drawBullet();
-			bullets.get(i).moveBullet();
-
-		}
-	}
-
-	public void eliminateBullet() {
-		for (int i = 0; i < bullets.size(); i++) {
-			if (bullets.get(i).getY() < 0) {
-				bullets.remove(i);
-			}
-
-		}
-
-	}
-
-	public ArrayList<Bullet> getBullets() {
-		return bullets;
-
-	}
-
+	
 	public int getPosX() {
 		return posX;
 	}

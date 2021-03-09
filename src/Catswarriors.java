@@ -34,7 +34,7 @@ public class Catswarriors {
 
 	public void drawcat2(PApplet app) {
 
-		if (vida == 3) {
+		if (vida == 2) {
 
 			app.image(cat2, posX, posY);
 			catmov2(app);
@@ -71,12 +71,7 @@ public class Catswarriors {
 
 	}
 	
-
 	
-	
-	
-	
-
 	public int getPosY() {
 		return posY;
 	}
